@@ -1,5 +1,0 @@
-{
-	"name": "2.TemplateClasses",
-	"type": "Executable",
-	"dependencies": ["DataStructures"]
-}

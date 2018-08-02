@@ -3,12 +3,12 @@
 Complex::Complex(const double re, const double im)
 	: real(re), imaginary(im) { }
 
-auto operator<<(std::ostream& os, const Complex& complex) -> std::ostream& {
+std::ostream& operator<<(std::ostream& os, const Complex& complex) {
 	os << complex.real << " + " << complex.imaginary << "i";
 	return os;
 }
 
-auto Complex::operator+(const Complex& other) const -> Complex {
+Complex Complex::operator+(const Complex& other) const {
     auto x = *this;
     auto y = other;
     auto re = x.real + y.real;

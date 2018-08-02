@@ -6,13 +6,13 @@
 
 class AmountList {
 public:
-	friend auto operator<<(std::ostream& os, const AmountList& amountList) -> std::ostream&;
+	friend std::ostream& operator<<(std::ostream& os, const AmountList& amountList);
 
 	AmountList() : m_first(nullptr), m_last(nullptr), m_size(0) { }
 	AmountList(const AmountList& other) { }
 	~AmountList() { this->Clear(); }
 
-	auto InsertFront(Amount* amount) -> AmountList& {
+	AmountList& InsertFront(Amount* amount) {
         ++m_size;
 
         Node* entry = new Node(amount, m_first);
@@ -23,7 +23,7 @@ public:
 		return *this;
 	}
 
-	auto InsertBack(Amount* amount) -> AmountList& {
+	AmountList& InsertBack(Amount* amount) {
         ++ m_size;
 
         Node* entry = new Node(amount, nullptr);
@@ -38,7 +38,7 @@ public:
 		return *this;
 	}
 
-	auto RemoveFront() -> Amount* {
+	Amount* RemoveFront() {
         if (!m_first) throw "Empty list";
 
         --m_size;
@@ -53,7 +53,7 @@ public:
 		return amount;
 	}
 
-	auto RemoveBack() -> Amount* {
+	Amount* RemoveBack() {
         if (!m_last) throw "Empty list";
 
         Node* last = m_last;
@@ -72,7 +72,7 @@ public:
         return amount;
 	}
 
-	auto Clear() -> AmountList& {
+	AmountList& Clear() {
         Node* node = m_first;
         for (size_t i = 0; i < m_size; ++i) {
             Node* next = node->next;
@@ -86,11 +86,11 @@ public:
 		return *this;
 	}
 
-	auto Size() const -> size_t {
+	size_t Size() const {
 		return m_size;
 	}
 
-	auto Get(const size_t index) -> Amount* {
+	Amount* Get(const size_t index) {
 		if (index >= m_size) throw "Out of bounds";
 		return this->GetNode(index)->amount;
 	}
@@ -103,7 +103,7 @@ private:
 		Node* next;
 	};
 
-	auto GetNode(const size_t index) -> Node* {
+	Node* GetNode(const size_t index) {
 		Node* node = m_first;
 		for (size_t i = 0; i < index; ++i) 
 			node = node->next;
@@ -116,7 +116,7 @@ private:
 	size_t m_size;
 };
 
-auto operator<<(std::ostream& os, const AmountList& amountList) -> std::ostream& {
+std::ostream& operator<<(std::ostream& os, const AmountList& amountList) {
 	AmountList::Node* node = amountList.m_first;
 	for (size_t i = 0; i < amountList.Size(); ++i) {
 		os << *(node->amount) << std::endl;
@@ -131,46 +131,46 @@ auto operator<<(std::ostream& os, const AmountList& amountList) -> std::ostream&
 // OMG SO MUCH COPY-PASTA
 class ComplexList {
 public:
-	friend auto operator<<(std::ostream& os, const ComplexList& amountList)->std::ostream&;
+	friend std::ostream& operator<<(std::ostream& os, const ComplexList& amountList);
 
 	ComplexList() : m_first(nullptr), m_last(nullptr), m_size(0) { }
 	ComplexList(const ComplexList& other) { }
 	~ComplexList() { this->Clear();  }
 
-	auto InsertFront(Complex* data) -> ComplexList& {
+	ComplexList& InsertFront(Complex* data) {
 
         return *this;
 	}
 
-	auto InsertBack(Complex* data) -> ComplexList& {
+	ComplexList& InsertBack(Complex* data) {
 		// Implement this method
 
 		return *this;
 	}
 
-	auto RemoveFront() -> Complex* {
+	Complex* RemoveFront() {
 		// Implement this method
 
 		return nullptr;
 	}
 
-	auto RemoveBack() -> Complex* {
+	Complex* RemoveBack() {
 		// Implement this method
 
 		return nullptr;
 	}
 
-	auto Clear() -> ComplexList& {
+	ComplexList& Clear(){
 		// Implement this method
 
 		return *this;
 	}
 
-	auto Size() const -> size_t {
+	size_t Size() const {
 		return m_size;
 	}
 
-	auto Get(const size_t index) -> Complex* {
+	Complex* Get(const size_t index) {
 		if (index >= m_size) throw "Out of bounds";
 		return this->GetNode(index)->data;
 	}
@@ -183,7 +183,7 @@ private:
 		Node* next;
 	};
 
-	auto GetNode(const size_t index) -> Node* {
+	Node* GetNode(const size_t index) {
 		Node* node = m_first;
 		for (size_t i = 0; i < index; ++i)
 			node = node->next;
@@ -196,7 +196,7 @@ private:
 	size_t m_size;
 };
 
-auto operator<<(std::ostream& os, const ComplexList& complexList) -> std::ostream& {
+std::ostream& operator<<(std::ostream& os, const ComplexList& complexList) {
 	ComplexList::Node* node = complexList.m_first;
 	for (size_t i = 0; i < complexList.Size(); ++i) {
 		os << *(node->data) << std::endl;
@@ -212,13 +212,13 @@ auto operator<<(std::ostream& os, const ComplexList& complexList) -> std::ostrea
 template<typename T> class List {
     public:
 
-    template<typename T> friend auto operator<<(std::ostream& os, const List<T>& list) -> std::ostream&;
+    template<typename T> friend std::ostream& operator<<(std::ostream& os, const List<T>& list) ;
 
     List() : m_first(nullptr), m_last(nullptr), m_size(0) { }
     List(const List& other) { }
     ~List() { this->Clear(); }
 
-    auto InsertFront(T* data) -> List& {
+    List& InsertFront(T* data) {
         ++m_size;
 
         Node* entry = new Node(data, m_first);
@@ -229,7 +229,7 @@ template<typename T> class List {
         return *this;
     }
 
-    auto InsertBack(T* data) -> List& {
+    List& InsertBack(T* data) {
         ++m_size;
 
         Node* entry = new Node(data, nullptr);
@@ -244,7 +244,7 @@ template<typename T> class List {
         return *this;
     }
 
-    auto RemoveFront() -> T* {
+    T* RemoveFront() {
         if (!m_first) throw "Empty list";
 
         --m_size;
@@ -259,7 +259,7 @@ template<typename T> class List {
         return amount;
     }
 
-    auto RemoveBack() -> T* {
+    T* RemoveBack() {
         if (!m_last) throw "Empty list";
 
         Node* last = m_last;
@@ -278,7 +278,7 @@ template<typename T> class List {
         return amount;
     }
 
-    auto Clear() -> List& {
+    List& Clear() {
         Node* node = m_first;
         for (size_t i = 0; i < m_size; ++i) {
             Node* next = node->next;
@@ -292,11 +292,11 @@ template<typename T> class List {
         return *this;
     }
 
-    auto Size() const -> size_t {
+    size_t Size() const {
         return m_size;
     }
 
-    auto Get(const size_t index) -> T* {
+    T* Get(const size_t index) {
         if (index >= m_size) throw "Out of bounds";
         return this->GetNode(index)->data;
     }
@@ -309,7 +309,7 @@ template<typename T> class List {
         Node* next;
     };
 
-    auto GetNode(const size_t index) -> Node* {
+    Node* GetNode(const size_t index) {
         Node* node = m_first;
         for (size_t i = 0; i < index; ++i)
             node = node->next;
@@ -322,7 +322,7 @@ template<typename T> class List {
     size_t m_size;
 };
 
-template<typename T> auto operator<<(std::ostream& os, const List<T>& list) -> std::ostream& {
+template<typename T> std::ostream& operator<<(std::ostream& os, const List<T>& list) {
     List<T>::Node* node = list.m_first;
     for (size_t i = 0; i < list.Size(); ++i) {
         os << *(node->data) << std::endl;
@@ -334,7 +334,7 @@ template<typename T> auto operator<<(std::ostream& os, const List<T>& list) -> s
 
 /************************************************************************************************************************/
 
-template<typename T> auto Print(const std::list<T*>& list) -> void {
+template<typename T> void Print(const std::list<T*>& list) {
     for (auto& entry : list)
         std::cout << *entry << std::endl;
     std::cout << std::endl;
@@ -342,7 +342,7 @@ template<typename T> auto Print(const std::list<T*>& list) -> void {
 
 /************************************************************************************************************************/
 
-auto main() -> int {
+int main() {
 
 	Amount electricityBill(15, 90);
 	Amount gasBill(20, 30);

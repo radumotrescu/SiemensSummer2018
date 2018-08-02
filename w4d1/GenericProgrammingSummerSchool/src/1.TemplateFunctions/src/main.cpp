@@ -3,33 +3,33 @@
 #include <Amount.h>
 #include <Complex.h>
 
-auto add(int x, int y) -> int {
+int add(int x, int y) {
     return x + y;
 }
 
-auto add(double x, double y) -> double {
+double add(double x, double y) {
     return x + y;
 }
 
-auto add(const Complex& x, const Complex& y) -> Complex {
+Complex add(const Complex& x, const Complex& y) {
     auto re = x.real + y.real;
     auto im = x.imaginary + y.imaginary;
 	return Complex(re, im);
 }
 
-auto add(const Amount& x, const Amount& y) -> Amount {
+Amount add(const Amount& x, const Amount& y) {
     auto dollars = x.dollars + y.dollars + (x.cents + y.cents) / 100;
     auto cents = (x.cents + y.cents ) % 100;
 	return Amount(dollars, cents);
 }
 
-template<typename T> auto add(const T& x, const T& y) -> T {
+template<typename T> T add(const T& x, const T& y) {
     return x + y;
 }
 
 /************************************************************************************************************************/
 
-auto main() -> int {
+int main() {
 	int one { 1 };
 	int two { 2 };
 

@@ -3,10 +3,10 @@
 struct Amount {
 	Amount(const int dollars, const int cents);
 
-    auto operator+(const Amount& other) const -> Amount;
+    Amount operator+(const Amount& other) const;
 	
 	int dollars;
 	int cents;
 };
 
-auto operator<<(std::ostream& os, const Amount& amount)->std::ostream&;
+std::ostream& operator<<(std::ostream& os, const Amount& amount);

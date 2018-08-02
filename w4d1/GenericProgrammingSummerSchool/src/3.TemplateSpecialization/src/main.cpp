@@ -11,7 +11,7 @@ public:
 		// etc..
 	};
 
-	static auto ToString(Units unit) -> std::string& {
+	static std::string& ToString(Units unit) {
 		static std::map<Units, std::string> representations = {
 			{Units::N, "N"},
 			{Units::mN, "mN"},
@@ -31,7 +31,7 @@ public:
 		// etc..
 	};
 
-	static auto ToString(Units unit) -> std::string& {
+	static std::string& ToString(Units unit) {
 		static std::map<Units, std::string> representations = {
 			{ Units::kg, "kg" },
 			{ Units::g, "g" },
@@ -50,7 +50,7 @@ public:
 		// etc..
 	};
 
-	static auto ToString(Units unit) -> std::string& {
+	static std::string& ToString(Units unit) {
 		static std::map<Units, std::string> representations = {
 			{ Units::m_s, "m/s" },
 			{ Units::km_h, "km/h" }
@@ -70,23 +70,23 @@ public:
     Parameter(double value, typename T::Units unit) : m_value(value), m_unit(unit) { }
     ~Parameter() { }
 
-    auto SetValue(const double value) -> Parameter& {
+    Parameter& SetValue(const double value) {
         m_value = value;
         return *this;
     }
 
-    auto SetUnit(const typename T::Units unit) -> Parameter& {
+    Parameter& SetUnit(const typename T::Units unit) {
         m_unit = unit;
         return *this;
     }
 
-    auto Set(const double value, const typename T::Units unit) -> Parameter& {
+    Parameter& Set(const double value, const typename T::Units unit) {
         m_value = value;
         m_unit = unit;
         return *this;
     }
 
-    auto ToString() const -> std::string {
+    std::string ToString() const {
         std::stringstream str;
         str << m_value << " " << T::ToString(m_unit);
 
@@ -103,12 +103,12 @@ public:
     Parameter(const double value) : m_value(value) { }
     ~Parameter() { }
 
-    auto SetValue(const double value) -> Parameter& {
+    Parameter& SetValue(const double value) {
         m_value = value;
         return *this;
     }
 
-    auto ToString() -> std::string {
+    std::string ToString() {
         std::stringstream str;
         str << m_value;
 

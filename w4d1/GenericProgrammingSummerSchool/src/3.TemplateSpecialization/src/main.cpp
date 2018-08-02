@@ -1,133 +1,104 @@
 #include <iostream>
 #include <sstream>
 #include <map>
+#include <vector>
+#include <cstring>
 
-class Force {
+template<typename T>
+class SortClass
+{
 public:
-	enum class Units {
-		N,
-		mN,
-		lbf,
-		// etc..
-	};
-
-	static std::string& ToString(Units unit) {
-		static std::map<Units, std::string> representations = {
-			{Units::N, "N"},
-			{Units::mN, "mN"},
-			{Units::lbf, "lbf"}
-		};
-
-		return representations[unit];
-	}
+    SortClass() {}
+    static void sort(std::vector<T>& m_elements)
+    {
+        for (int i = 0; i < m_elements.size() - 1; i++)
+        {
+            for (int j = i + 1; j < m_elements.size(); j++)
+            {
+                if (m_elements[i] < m_elements[j])
+                {
+                    std::swap(m_elements[i], m_elements[j]);
+                }
+            }
+        }
+    }
 };
 
-class Mass {
+template <>
+class SortClass <std::vector<int>>
+{
 public:
-	enum class Units {
-		kg,
-		g,
-		lb,
-		// etc..
-	};
-
-	static std::string& ToString(Units unit) {
-		static std::map<Units, std::string> representations = {
-			{ Units::kg, "kg" },
-			{ Units::g, "g" },
-			{ Units::lb, "lb" }
-		};
-
-		return representations[unit];
-	}
-};
-
-class Velocity {
-public:
-	enum class Units {
-		m_s,
-		km_h,
-		// etc..
-	};
-
-	static std::string& ToString(Units unit) {
-		static std::map<Units, std::string> representations = {
-			{ Units::m_s, "m/s" },
-			{ Units::km_h, "km/h" }
-		};
-
-		return representations[unit];
-	}
-};
-
-class Dimensionless {
-
-};
-
-
-template<typename T> class Parameter {
-public:
-    Parameter(double value, typename T::Units unit) : m_value(value), m_unit(unit) { }
-    ~Parameter() { }
-
-    Parameter& SetValue(const double value) {
-        m_value = value;
-        return *this;
-    }
-
-    Parameter& SetUnit(const typename T::Units unit) {
-        m_unit = unit;
-        return *this;
-    }
-
-    Parameter& Set(const double value, const typename T::Units unit) {
-        m_value = value;
-        m_unit = unit;
-        return *this;
-    }
-
-    std::string ToString() const {
-        std::stringstream str;
-        str << m_value << " " << T::ToString(m_unit);
-
-        return str.str();
-    }
-
-private:
-    double m_value;
-    typename T::Units m_unit;
-};
-
-template<> class Parameter<Dimensionless> {
-public:
-    Parameter(const double value) : m_value(value) { }
-    ~Parameter() { }
-
-    Parameter& SetValue(const double value) {
-        m_value = value;
-        return *this;
-    }
-
-    std::string ToString() {
-        std::stringstream str;
-        str << m_value;
-
-        return str.str();
+    SortClass() {}
+    static void sort(std::vector<std::vector<int>>& m_elements)
+    {
+        for (int i = 0; i < m_elements.size() - 1; i++)
+        {
+            for (int j = i + 1; j < m_elements.size(); j++)
+            {
+                if (vectorSum(m_elements[i]) < vectorSum(m_elements[j]))
+                {
+                    std::swap(m_elements[i], m_elements[j]);
+                }
+            }
+        }
     }
 private:
-    double m_value;
+    static int vectorSum(const std::vector<int>& vector)
+    {
+        int sum = 0;
+        for (const auto& elem : vector)
+            sum += elem;
+
+        return sum;
+    }
 };
 
-auto main() -> int {
-	// Uncomment the part below when implementation is done
+template <>
+class SortClass <std::string>
+{
+public:
+    SortClass() {}
+    static void sort(std::vector<std::string>& m_elements)
+    {
+        for (int i = 0; i < m_elements.size() - 1; i++)
+        {
+            for (int j = i + 1; j < m_elements.size(); j++)
+            {
+                if (m_elements[i].compare(m_elements[j]))
+                {
+                    std::swap(m_elements[i], m_elements[j]);
+                }
+            }
+        }
+    }
+};
 
-	Parameter<Force> force(3.5, Force::Units::mN);
-	Parameter<Mass> mass(70, Mass::Units::kg);
-	Parameter<Dimensionless> scale(2.0);
+int main()
+{
 
-	std::cout << "Force: " << force.ToString() << std::endl;
-	std::cout << "Mass: " << mass.ToString() << std::endl;
-	std::cout << "Scale: " << scale.ToString() << std::endl;
+    std::vector<std::string> strVector = { "aaaa", "abc","aaa" };
+    SortClass<std::string>::sort(strVector);
 
-	return 0;
+    for (const auto& elem : strVector)
+        std::cout << elem << "\n";
+    std::cout << "\n";
+
+    std::vector<std::vector<int>> vecVector = { {1,2},{2,3},{1,1} };
+    SortClass<std::vector<int>>::sort(vecVector);
+
+    for (const auto& elem : vecVector)
+    {
+        for (const auto& elem_v : elem)
+            std::cout << elem_v << " ";
+        std::cout << "\n";
+    }
+    std::cout << "\n";
+
+    std::vector<double> doubleVector = { 2.1,0.23,100 };
+    SortClass<double>::sort(doubleVector);
+
+    for (const auto& elem : doubleVector)
+        std::cout << elem << "\n";
+
+    return 0;
 }

@@ -8,4 +8,4 @@ include_directories(include)
 #However, the file(GLOB...) allows for wildcard additions:
 file(GLOB SOURCES "src/*.cpp" "include/*.h")
 
-add_executable(5.VariadicTemplates ${SOURCES})
+add_executable(5.CRTP ${SOURCES})

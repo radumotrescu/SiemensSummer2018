@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 
+
 auto JonSnowDies(const std::string& content) -> bool {
     return content == "Jon Snow dies";
 }
@@ -37,8 +38,8 @@ auto ReadFile(const std::string& fileName) -> void {
 
 auto main() -> int {
     try {
-        ReadFile("..\\..\\src\\4.ReadingFile_Example\\Public\\GameOfThrones.txt");
-        ReadFile("..\\..\\src\\4.ReadingFile_Example\\Public\\GameOfThronesYAY.txt");
+        ReadFile("..\..\..\..\src\1.ReadingFile_Example\src\GameOfThrones.txt");
+        ReadFile("..\..\..\..\src\1.ReadingFile_Example\src\GameOfThronesYAY.txt");
     } catch (...) {
         std::cout << "Don't worry, I GOT this" << std::endl;
     }

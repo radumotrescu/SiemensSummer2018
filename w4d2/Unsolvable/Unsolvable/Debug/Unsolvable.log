@@ -1,0 +1,20 @@
+﻿  Peasant.cpp
+c:\repo\w4d2\unsolvable\unsolvable\farm.h(13): error C2061: syntax error: identifier 'Peasant'
+c:\repo\w4d2\unsolvable\unsolvable\farm.h(19): error C2065: 'Peasant': undeclared identifier
+c:\repo\w4d2\unsolvable\unsolvable\farm.h(19): error C2059: syntax error: '>'
+c:\repo\w4d2\unsolvable\unsolvable\farm.h(19): error C2976: 'std::vector': too few template arguments
+  c:\apps\mvs15\vc\tools\msvc\14.10.25017\include\vector(700): note: see declaration of 'std::vector'
+  main.cpp
+c:\repo\w4d2\unsolvable\unsolvable\farm.h(13): error C2061: syntax error: identifier 'Peasant'
+c:\repo\w4d2\unsolvable\unsolvable\farm.h(19): error C2065: 'Peasant': undeclared identifier
+c:\repo\w4d2\unsolvable\unsolvable\farm.h(19): error C2059: syntax error: '>'
+c:\repo\w4d2\unsolvable\unsolvable\farm.h(19): error C2976: 'std::vector': too few template arguments
+  c:\apps\mvs15\vc\tools\msvc\14.10.25017\include\vector(700): note: see declaration of 'std::vector'
+c:\repo\w4d2\unsolvable\unsolvable\main.cpp(13): error C2660: 'Farm::Hire': function does not take 1 arguments
+  Farm.cpp
+c:\repo\w4d2\unsolvable\unsolvable\peasant.h(13): error C2061: syntax error: identifier 'Farm'
+c:\repo\w4d2\unsolvable\unsolvable\peasant.h(19): error C2065: 'Farm': undeclared identifier
+c:\repo\w4d2\unsolvable\unsolvable\peasant.h(19): error C2059: syntax error: '>'
+c:\repo\w4d2\unsolvable\unsolvable\peasant.h(19): error C2976: 'std::vector': too few template arguments
+  c:\apps\mvs15\vc\tools\msvc\14.10.25017\include\vector(700): note: see declaration of 'std::vector'
+  Generating Code...

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Farm.h"
-
 #include <string>
 #include <vector>
+
+class Farm;
 
 class Peasant
 {
@@ -13,7 +13,10 @@ public:
     void Enroll(Farm* farm);
     void Quit(const std::string& farmName);
     std::string GetName() const { return m_name; };
-    ~Peasant();
+	std::string Work() {
+		return "I'm working";
+	}
+	~Peasant() = default;
 
 private:
     std::vector<Farm*> m_farms;

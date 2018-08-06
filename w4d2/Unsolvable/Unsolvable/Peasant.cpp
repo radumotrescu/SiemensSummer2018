@@ -1,6 +1,5 @@
 #include "Peasant.h"
-
-
+#include "Farm.h"
 
 Peasant::Peasant()
 {
@@ -17,14 +16,9 @@ void Peasant::Enroll(Farm * farm)
 
 void Peasant::Quit(const std::string & farmName)
 {
-    for (const auto& farm : m_farms)
-        if (farm->GetName().compare(farmName))
-        {
-            // .....
-        }
-}
-
-
-Peasant::~Peasant()
-{
+	for (const auto& farm : m_farms)
+		if (farm->GetName().compare(farmName))
+		{
+			// .....
+		}
 }
